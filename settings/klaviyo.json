@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json.swell.store/setting.json",
+  "label": "Klaviyo",
+  "description": "Send customer events to Klaviyo for email and SMS marketing automation",
+  "fields": [
+    {
+      "id": "public_api_key",
+      "label": "Public API Key (Site ID)",
+      "type": "text",
+      "description": "Found in Klaviyo → Account → API Keys",
+      "required": true
+    },
+    {
+      "id": "private_api_key",
+      "label": "Private API Key",
+      "type": "text",
+      "description": "Found in Klaviyo → Account → API Keys",
+      "required": true
+    },
+    {
+      "id": "list_id",
+      "label": "Email List ID",
+      "type": "text",
+      "description": "Klaviyo list ID for subscribing customers who opt in to email marketing",
+      "required": true
+    },
+    {
+      "id": "enable_sms",
+      "label": "Enable SMS Marketing",
+      "type": "toggle",
+      "description": "Subscribe customers to SMS marketing when they opt in during checkout",
+      "default": false
+    },
+    {
+      "id": "sms_list_id",
+      "label": "SMS List ID",
+      "type": "text",
+      "description": "Optional: separate Klaviyo list for SMS subscribers. Leave empty to use the Email List ID."
+    },
+    {
+      "id": "event_checkout_started",
+      "label": "Track Checkout Started",
+      "type": "toggle",
+      "description": "Send 'Checkout Started' event when a customer begins checkout",
+      "default": true
+    },
+    {
+      "id": "event_checkout_abandoned",
+      "label": "Track Abandoned Checkout",
+      "type": "toggle",
+      "description": "Send 'Abandoned Checkout' event when a cart is abandoned",
+      "default": true
+    },
+    {
+      "id": "event_order_submitted",
+      "label": "Track Order Submitted",
+      "type": "toggle",
+      "description": "Send 'Order Submitted' event when a customer places an order",
+      "default": true
+    },
+    {
+      "id": "event_order_fulfilled",
+      "label": "Track Order Fulfilled",
+      "type": "toggle",
+      "description": "Send 'Order Fulfilled' event when an order is marked as delivered",
+      "default": true
+    },
+    {
+      "id": "event_order_canceled",
+      "label": "Track Order Canceled",
+      "type": "toggle",
+      "description": "Send 'Order Canceled' event when an order is canceled",
+      "default": false
+    }
+  ]
+}
