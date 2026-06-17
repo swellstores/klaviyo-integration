@@ -70,7 +70,7 @@
       "label": "Track Order Canceled",
       "type": "toggle",
       "description": "Send 'Order Canceled' event when an order is canceled",
-      "default": false
+      "default": true
     }
   ]
 }

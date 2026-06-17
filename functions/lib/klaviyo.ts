@@ -42,7 +42,7 @@ export function buildEventProps(
   eventName: string,
   eventId: string,
   record: any,
-  phoneNumber?: string | null,
+  phoneNumber: string | null | undefined,
 ): object {
   const mappedItems = buildMappedItems(record.items ?? []);
 
@@ -126,13 +126,13 @@ export async function track(
       console.error('Klaviyo track error:', err);
       return;
     }
-    // Known issue: Klaviyo rejects some phone number formats - retry the same event without phone
+    // Known issue: Klaviyo rejects some phone numbers - retry the same event without phone
     delete props.attributes.profile.data.attributes.phone_number;
     await track(publicApiKey, props, true);
   }
 }
 
-// subscribe email
+// subscribe email and phone
 export async function subscribeToList(
   privateApiKey: string,
   email: string,
