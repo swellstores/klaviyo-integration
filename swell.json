@@ -1,8 +1,8 @@
 {
-  "description": "Klaviyo email and SMS marketing integration",
-  "id": "klaviyo",
-  "name": "Klaviyo",
-  "type": "integration",
-  "version": "1.0.0",
-  "permissions": []
+	"description": "Klaviyo email and SMS marketing integration",
+	"id": "klaviyo",
+	"name": "Klaviyo",
+	"type": "integration",
+	"version": "1.0.1",
+	"permissions": []
 }
