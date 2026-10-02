@@ -38,6 +38,7 @@ After tracking an event for a customer with an account, the app subscribes the p
 - `email_optin: true` → email marketing consent, subscribed to **Email List ID**.
 - `sms_optin: true` and **Enable SMS Marketing** is on and the account has a valid phone → SMS marketing and transactional consent,
   subscribed to **SMS List ID** (or **Email List ID** when SMS List ID is empty).
+- Both opt-ins with a separate SMS list → one call per list: email consent to **Email List ID**, SMS consent to **SMS List ID**.
 - No opt-in → no subscription call.
 
 ## Settings

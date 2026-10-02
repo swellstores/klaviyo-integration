@@ -191,33 +191,46 @@ export async function subscribeToList(
       return;
     }
 
-    const targetListId = subscriptions.sms && smsListId ? smsListId : listId;
-    const profileAttrs: any = { email, subscriptions };
-    if (subscriptions.sms && phoneNumber) {
-      profileAttrs.phone_number = phoneNumber;
+    // Email consent goes to the email list and SMS consent to the SMS list.
+    // Without a separate SMS list, both go to the email list in one call.
+    const jobs: { listId: string; subscriptions: any }[] = [];
+    if (subscriptions.sms && smsListId && smsListId !== listId) {
+      if (subscriptions.email) {
+        jobs.push({ listId, subscriptions: { email: subscriptions.email } });
+      }
+      jobs.push({ listId: smsListId, subscriptions: { sms: subscriptions.sms } });
+    } else {
+      jobs.push({ listId, subscriptions });
     }
 
-    const res = await fetch(`${API_BASE}/api/profile-subscription-bulk-create-jobs/`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        data: {
-          type: 'profile-subscription-bulk-create-job',
-          attributes: {
-            profiles: {
-              data: [{ type: 'profile', id: profile.id, attributes: profileAttrs }],
+    for (const job of jobs) {
+      const profileAttrs: any = { email, subscriptions: job.subscriptions };
+      if (job.subscriptions.sms && phoneNumber) {
+        profileAttrs.phone_number = phoneNumber;
+      }
+
+      const res = await fetch(`${API_BASE}/api/profile-subscription-bulk-create-jobs/`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          data: {
+            type: 'profile-subscription-bulk-create-job',
+            attributes: {
+              profiles: {
+                data: [{ type: 'profile', id: profile.id, attributes: profileAttrs }],
+              },
+            },
+            relationships: {
+              list: { data: { type: 'list', id: job.listId } },
             },
           },
-          relationships: {
-            list: { data: { type: 'list', id: targetListId } },
-          },
-        },
-      }),
-    });
+        }),
+      });
 
-    if (!res.ok) {
-      const body = await res.text();
-      throw new Error(`Subscribe ${res.status}: ${body}`);
+      if (!res.ok) {
+        const body = await res.text();
+        throw new Error(`Subscribe ${res.status}: ${body}`);
+      }
     }
 
     let channels = 'email only';

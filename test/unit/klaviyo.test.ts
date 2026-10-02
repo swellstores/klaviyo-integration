@@ -158,6 +158,39 @@ describe("subscribeToList", () => {
     expect(profile.attributes.phone_number).toBe("+12015550123");
   });
 
+  it("subscribes each channel to its own list when the customer opts in to both", async () => {
+    const fetchMock = mockKlaviyoFetch();
+    await subscribeToList("pk", "a@b.c", "+12015550123", "LIST1", true, true, true, "SMSLIST");
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    const emailJob = bodyOf(fetchMock.mock.calls[1]);
+    expect(emailJob.data.relationships.list.data.id).toBe("LIST1");
+    const emailProfile = emailJob.data.attributes.profiles.data[0];
+    expect(emailProfile.attributes.subscriptions).toEqual({
+      email: { marketing: { consent: "SUBSCRIBED" } },
+    });
+    expect(emailProfile.attributes.phone_number).toBeUndefined();
+
+    const smsJob = bodyOf(fetchMock.mock.calls[2]);
+    expect(smsJob.data.relationships.list.data.id).toBe("SMSLIST");
+    const smsProfile = smsJob.data.attributes.profiles.data[0];
+    expect(smsProfile.attributes.subscriptions.email).toBeUndefined();
+    expect(smsProfile.attributes.subscriptions.sms.marketing.consent).toBe("SUBSCRIBED");
+    expect(smsProfile.attributes.phone_number).toBe("+12015550123");
+  });
+
+  it("subscribes both channels to the email list when no SMS list is set", async () => {
+    const fetchMock = mockKlaviyoFetch();
+    await subscribeToList("pk", "a@b.c", "+12015550123", "LIST1", true, true, true, null);
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    const body = bodyOf(fetchMock.mock.calls[1]);
+    expect(body.data.relationships.list.data.id).toBe("LIST1");
+    const subscriptions = body.data.attributes.profiles.data[0].attributes.subscriptions;
+    expect(subscriptions.email.marketing.consent).toBe("SUBSCRIBED");
+    expect(subscriptions.sms.marketing.consent).toBe("SUBSCRIBED");
+  });
+
   it("does not subscribe SMS without a phone number", async () => {
     const fetchMock = mockKlaviyoFetch();
     await subscribeToList("pk", "a@b.c", null, "LIST1", false, true, true, null);
