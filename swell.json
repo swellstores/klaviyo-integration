@@ -23,16 +23,16 @@
 			"image_src": "assets/screenshots/2-events.png"
 		},
 		{
-			"id": "2-overview",
-			"title": "Overview",
-			"description": "Klaviyo email and SMS marketing integration",
-			"image_src": "assets/screenshots/2-overview.png"
-		},
-		{
 			"id": "3-configurations",
 			"title": "App configurations",
 			"description": "Track order lifecycle events and cart checkout events in Klaviyo",
 			"image_src": "assets/screenshots/3-configurations.png"
+		},
+		{
+			"id": "4-how-it-works",
+			"title": "How it works",
+			"description": "Store events become Klaviyo metrics and opted-in customers join your lists",
+			"image_src": "assets/screenshots/4-how-it-works.png"
 		}
 	]
 }

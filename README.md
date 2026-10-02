@@ -25,7 +25,8 @@ Each event includes:
 - **Properties** – the full cart/order record, its items mapped to a flat format
   (`id`, `price`, `price_total`, `discount_total`, `tax_total`, `product_slug`, `product_name`, `product_sku`, `product_image_url`, `quantity`)
   and `items_product_slugs`.
-- **Unique ID** – `<metric-name>-<record id>`, so Klaviyo deduplicates repeated deliveries of the same event.
+- **Unique ID** – `<metric-name>-<record id>`. Klaviyo records only the first event with the same `unique_id` for the same profile and metric,
+  so repeated deliveries are ignored.
 
 Phone numbers are normalized to E.164 using the shipping country (`functions/lib/phone.ts`).
 If Klaviyo rejects an event because of the phone number, the event is resent once without it.
@@ -100,6 +101,9 @@ The private API key needs read/write access to **Profiles**, **Lists** and **Sub
 - **Subscriptions require an account** – guest carts/orders without a linked account are tracked anonymously and never subscribed.
 - **No retries** – failed Klaviyo calls are logged (`console.error`) and dropped; there is no queue or backfill of past records.
   The only retry is resending an event without a rejected phone number.
+- **One event per metric per record** – because the unique ID is built from the cart/order ID, a metric is recorded once per cart or order for a profile.
+  For example, a cart abandoned a second time does not create a second "Abandoned Checkout". If the profile differs between deliveries
+  (e.g. a guest cart later linked to an account), Klaviyo treats it as a new event.
 - **Checkout Started** fires on `cart.created`, i.e. when the cart record is first created, not on a later checkout step.
 - **Single list** – one email list and optionally one SMS list; per-product or per-segment lists are not supported.
 - Klaviyo API revision is pinned to `2024-02-15` (`functions/lib/klaviyo.ts`).
@@ -150,4 +154,4 @@ Contributions are welcome! Visit the [Swell Discord](https://discord.gg/VakSbyjD
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see [LICENSE.md](LICENSE.md) file for details.
