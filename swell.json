@@ -4,5 +4,35 @@
 	"name": "Klaviyo",
 	"type": "integration",
 	"version": "1.0.2",
-	"permissions": []
+	"permissions": [],
+	"support_email": "support@swell.is",
+	"integrations": [
+		"klaviyo"
+	],
+	"images": [
+		{
+			"id": "1-settings",
+			"title": "Settings",
+			"description": "Send customer events to Klaviyo for email and SMS marketing automation",
+			"image_src": "assets/screenshots/1-settings.png"
+		},
+		{
+			"id": "2-events",
+			"title": "Events",
+			"description": "Track Checkout Started, Abandoned Checkout, Order Submitted, Order Fulfilled, Order Canceled",
+			"image_src": "assets/screenshots/2-events.png"
+		},
+		{
+			"id": "2-overview",
+			"title": "Overview",
+			"description": "Klaviyo email and SMS marketing integration",
+			"image_src": "assets/screenshots/2-overview.png"
+		},
+		{
+			"id": "3-configurations",
+			"title": "App configurations",
+			"description": "Track order lifecycle events and cart checkout events in Klaviyo",
+			"image_src": "assets/screenshots/3-configurations.png"
+		}
+	]
 }
