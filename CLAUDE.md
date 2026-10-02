@@ -1,0 +1,3 @@
+- **App ID:** klaviyo
+- **Project:** Swell custom app. It extends e-commerce stores through event-driven functions, data models, and UI components.
+- **Tools:** Swell skills, Swell CLI, and senior agents for troubleshooting. Consult appropriate skill to ensure competent actions.

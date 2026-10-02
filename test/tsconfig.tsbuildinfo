@@ -1,0 +1,1 @@
+{"root":["./env.d.ts","./setup-globals.ts","./helpers/klaviyo-fixtures.ts","./helpers/mock-request.ts","./helpers/swell-client.ts","./integration/example.test.ts","./unit/event-functions.test.ts","./unit/klaviyo.test.ts","./unit/phone.test.ts","../functions/cart-events.ts","../functions/order-events.ts","../functions/lib/klaviyo.ts","../functions/lib/phone.ts"],"version":"5.9.3"}
