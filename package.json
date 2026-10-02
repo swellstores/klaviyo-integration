@@ -1,5 +1,5 @@
 {
-  "description": "Klaviyo email and SMS marketing integration",
+  "description": "Send checkout and order events to Klaviyo and subscribe customers who opt in",
   "dependencies": {
     "libphonenumber-js": "1.11.7"
   },

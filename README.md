@@ -120,7 +120,8 @@ functions/
   lib/phone.ts        # E.164 phone formatting
 settings/klaviyo.json # merchant settings
 assets/icon.png       # app icon
-assets/screenshots/   # listing screenshots (referenced by `images` in swell.json)
+assets/image.png      # social card (1200×630)
+assets/images/        # App Store listing images (referenced by `images` in swell.json)
 test/unit/            # vitest unit tests (Klaviyo API mocked)
 test/integration/     # vitest tests against the store using CLI auth
 ```

@@ -1,34 +1,13 @@
-# Klaviyo
+Send your store's checkout and order events to Klaviyo, and subscribe customers who opt in to email or SMS marketing. Each event arrives in Klaviyo as a metric, like Order Submitted, with the order value, the items and the customer's profile, ready to trigger your flows.
 
-Send store events to Klaviyo and subscribe customers who opt in to email or SMS marketing.
+Connect your Klaviyo account with its API keys, choose the list for customers who opt in, and pick the events to send. From then on, each event is sent to Klaviyo when it happens in your store.
 
-## How it works
+- **Five store events.** Checkout Started when a cart is created, Abandoned Checkout when a cart is abandoned, Order Submitted when an order is placed, Order Fulfilled when it's delivered, and Order Canceled. Each has its own switch.
+- **Customer profiles.** Events for a customer's account carry their email, name, phone number and shipping address, so they land on the right Klaviyo profile. Carts that aren't linked to a customer yet are tracked with an anonymous ID.
+- **Order details for your emails.** Each event includes the cart or order total and currency, and every item with its name, SKU, image, price, discount, tax and quantity.
+- **Email and SMS opt-ins.** Customers who accept email or SMS marketing are subscribed in Klaviyo and added to the list you choose. SMS subscriptions are optional and need a valid phone number.
+- **Counted once.** Each metric is recorded once per cart or order, so a repeated delivery doesn't create a duplicate event.
 
-1. **Listens to store events.** Cart and order events trigger the app:
+**Replaces the built-in integration.** The app sends the same metric names and properties as Swell's built-in Klaviyo integration, so flows built on them keep working when you switch. If the built-in integration is on when you install the app, Swell offers to turn it off so events aren't sent twice.
 
-   | Store event       | Klaviyo metric     |
-   | ----------------- | ------------------ |
-   | `cart.created`    | Checkout Started   |
-   | `cart.abandoned`  | Abandoned Checkout |
-   | `order.submitted` | Order Submitted    |
-   | `order.delivered` | Order Fulfilled    |
-   | `order.canceled`  | Order Canceled     |
-
-   Each event can be turned on or off in the app settings.
-
-2. **Sends the event to Klaviyo.** The app loads the cart or order with its items and sends it with:
-   - the order value and currency;
-   - the customer profile: email, name, phone (E.164) and shipping location, or an anonymous profile for guests;
-   - the items with product name, SKU, image, price, discount, tax and quantity.
-
-   Each event is sent with an ID made of the metric name and the cart or order ID. Klaviyo records only the first event with the same ID for the same profile, so repeated deliveries are ignored and each metric is recorded once per cart or order.
-
-3. **Subscribes opted-in customers.** For customers with an account:
-   - email opt-in → subscribed to the email list;
-   - SMS opt-in (when SMS marketing is enabled and a valid phone exists) → subscribed to the SMS list, or to the email list when no SMS list is set.
-
-   Customers who did not opt in are not subscribed.
-
-## Setup
-
-Enter your Klaviyo Public API Key, Private API Key and Email List ID in the app settings. Optionally enable SMS marketing and set an SMS list. Disable the native Klaviyo integration to avoid sending events twice.
+Setup takes a few minutes. In Klaviyo, open Settings → API keys, copy your public API key (Site ID) and create a private API key with full access to Lists, Profiles and Subscriptions. Paste both keys and your list ID in the app settings and save. Then place a test order and look for Order Submitted on the customer's Klaviyo profile.

@@ -1,38 +1,40 @@
 {
-	"description": "Klaviyo email and SMS marketing integration",
+	"description": "Send checkout and order events to Klaviyo and subscribe customers who opt in",
 	"id": "klaviyo",
 	"name": "Klaviyo",
 	"type": "integration",
 	"version": "1.0.3",
 	"permissions": [],
 	"support_email": "support@swell.is",
+	"documentation_url": "https://developers.swell.is/app-guides/klaviyo",
+	"price_external": true,
 	"integrations": [
 		"klaviyo"
 	],
 	"images": [
 		{
-			"id": "1-settings",
-			"title": "Settings",
-			"description": "Send customer events to Klaviyo for email and SMS marketing automation",
-			"image_src": "assets/screenshots/1-settings.png"
+			"id": "store-events",
+			"title": "Store events in Klaviyo",
+			"description": "Checkouts and orders arrive in Klaviyo as metrics, with the order value, the items and the customer's profile.",
+			"image_src": "assets/images/1-store-events.png"
 		},
 		{
-			"id": "2-events",
-			"title": "Events",
-			"description": "Track Checkout Started, Abandoned Checkout, Order Submitted, Order Fulfilled, Order Canceled",
-			"image_src": "assets/screenshots/2-events.png"
+			"id": "setup",
+			"title": "Connected in a few minutes",
+			"description": "Paste your Klaviyo API keys, choose the lists for opted-in customers and pick the events to send.",
+			"image_src": "assets/images/2-setup.png"
 		},
 		{
-			"id": "3-configurations",
-			"title": "App configurations",
-			"description": "Track order lifecycle events and cart checkout events in Klaviyo",
-			"image_src": "assets/screenshots/3-configurations.png"
+			"id": "opt-ins",
+			"title": "Opt-ins become Klaviyo subscribers",
+			"description": "Customers who accept email or SMS marketing at checkout are subscribed in Klaviyo and added to your list.",
+			"image_src": "assets/images/3-opt-ins.png"
 		},
 		{
-			"id": "4-how-it-works",
-			"title": "How it works",
-			"description": "Store events become Klaviyo metrics and opted-in customers join your lists",
-			"image_src": "assets/screenshots/4-how-it-works.png"
+			"id": "switch-from-built-in",
+			"title": "Switch from the built-in integration",
+			"description": "Install the app and turn off the built-in integration in one step. Metrics keep the same names and properties.",
+			"image_src": "assets/images/4-switch-from-built-in.png"
 		}
 	]
 }
