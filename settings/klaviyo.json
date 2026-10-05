@@ -13,7 +13,7 @@
     {
       "id": "private_api_key",
       "label": "Private API Key",
-      "type": "short_text",
+      "type": "secret",
       "description": "Found in Klaviyo → Account → API Keys",
       "required": true
     },
