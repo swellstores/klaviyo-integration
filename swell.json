@@ -1,5 +1,5 @@
 {
-	"description": "Send checkout and order events to Klaviyo and subscribe customers who opt in",
+	"description": "Send checkout and order events to Klaviyo and subscribe opt-ins",
 	"id": "klaviyo",
 	"name": "Klaviyo",
 	"type": "integration",
