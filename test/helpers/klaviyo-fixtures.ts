@@ -6,6 +6,11 @@ export const settings = {
   list_id: "LIST1",
   enable_sms: false,
   sms_list_id: "",
+  event_checkout_started: true,
+  event_checkout_abandoned: true,
+  event_order_submitted: true,
+  event_order_fulfilled: true,
+  event_order_canceled: true,
 };
 
 export function makeRecord(overrides: Record<string, any> = {}) {

@@ -1,7 +1,7 @@
 import { formatPhone } from './phone';
 
-const API_BASE = 'https://a.klaviyo.com';
-const REVISION = '2024-02-15';
+export const API_BASE = 'https://a.klaviyo.com';
+export const REVISION = '2024-02-15';
 
 interface MappedItem {
   id: string;
@@ -285,7 +285,10 @@ export async function trackKlaviyoEvent(
   }
 
   const { eventName, settingKey } = resolvedEvent;
-  if (appSettings[settingKey] === false) {
+  // unset switches follow the settings defaults: only Checkout Started and Order Submitted are on
+  const enabled =
+    appSettings[settingKey] ?? (settingKey === 'event_checkout_started' || settingKey === 'event_order_submitted');
+  if (!enabled) {
     // event is disabled
     return;
   }

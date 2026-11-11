@@ -2,6 +2,15 @@
   "$schema": "https://json.swell.store/setting.json",
   "label": "Klaviyo",
   "description": "Send customer events to Klaviyo for email and SMS marketing automation",
+  "actions": [
+    {
+      "id": "test_connection",
+      "label": "Test connection",
+      "function": "test-connection",
+      "loading_label": "Testing…",
+      "hint": "Checks the private API key and the email list"
+    }
+  ],
   "fields": [
     {
       "id": "public_api_key",
@@ -52,7 +61,7 @@
       "type": "boolean",
       "ui": "toggle",
       "description": "Send 'Abandoned Checkout' event when a cart is abandoned",
-      "default": true
+      "default": false
     },
     {
       "id": "event_order_submitted",
@@ -68,7 +77,7 @@
       "type": "boolean",
       "ui": "toggle",
       "description": "Send 'Order Fulfilled' event when an order is marked as delivered",
-      "default": true
+      "default": false
     },
     {
       "id": "event_order_canceled",
@@ -76,7 +85,7 @@
       "type": "boolean",
       "ui": "toggle",
       "description": "Send 'Order Canceled' event when an order is canceled",
-      "default": true
+      "default": false
     }
   ]
 }

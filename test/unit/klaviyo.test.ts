@@ -236,6 +236,16 @@ describe("trackKlaviyoEvent", () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
+  it("sends only Checkout Started and Order Submitted when the switches are unset", async () => {
+    const { event_checkout_started, event_checkout_abandoned, event_order_submitted, event_order_fulfilled, event_order_canceled, ...keys } = settings;
+    const fetchMock = mockKlaviyoFetch();
+    for (const type of ["cart.created", "cart.abandoned", "order.submitted", "order.delivered", "order.canceled"]) {
+      await trackKlaviyoEvent(type, "rec_1", makeRecord({ account: undefined }), keys);
+    }
+    const names = fetchMock.mock.calls.map((c: any[]) => bodyOf(c).data.attributes.metric.data.attributes.name);
+    expect(names).toEqual(["Checkout Started", "Order Submitted"]);
+  });
+
   it.each([
     ["order.submitted", "Order Submitted"],
     ["order.delivered", "Order Fulfilled"],

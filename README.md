@@ -53,10 +53,10 @@ All credentials and options are configured by the merchant in the app settings (
 | `enable_sms`               | toggle  | no       | off     | Subscribe customers to SMS marketing when they opt in.                      |
 | `sms_list_id`              | text    | no       |         | Separate list for SMS subscribers. Empty → `list_id` is used.               |
 | `event_checkout_started`   | toggle  | no       | on      | Send "Checkout Started".                                                    |
-| `event_checkout_abandoned` | toggle  | no       | on      | Send "Abandoned Checkout".                                                  |
+| `event_checkout_abandoned` | toggle  | no       | off     | Send "Abandoned Checkout".                                                  |
 | `event_order_submitted`    | toggle  | no       | on      | Send "Order Submitted".                                                     |
-| `event_order_fulfilled`    | toggle  | no       | on      | Send "Order Fulfilled".                                                     |
-| `event_order_canceled`     | toggle  | no       | on      | Send "Order Canceled".                                                      |
+| `event_order_fulfilled`    | toggle  | no       | off     | Send "Order Fulfilled".                                                     |
+| `event_order_canceled`     | toggle  | no       | off     | Send "Order Canceled".                                                      |
 
 If any of the three required settings is missing, functions log an error and send nothing.
 
@@ -117,6 +117,7 @@ The private API key needs read/write access to **Profiles**, **Lists** and **Sub
 functions/
   cart-events.ts      # cart.created, cart.abandoned → Klaviyo
   order-events.ts     # order.submitted, order.delivered, order.canceled → Klaviyo
+  test-connection.ts  # settings action: checks the private API key and email list
   lib/klaviyo.ts      # event mapping, Klaviyo API calls, list subscription
   lib/phone.ts        # E.164 phone formatting
 settings/klaviyo.json # merchant settings
